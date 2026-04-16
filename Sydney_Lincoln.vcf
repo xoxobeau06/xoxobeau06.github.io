@@ -1,0 +1,15 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Sydney Lincoln
+N:Lincoln;Sydney;;;
+ORG:Eastern Washington University
+TITLE:VCD Student
+EMAIL;TYPE=INTERNET:slincoln4@ewu.edu
+TEL;TYPE=CELL:(509)-991-2566
+URL:https://xoxobeau06.github.io/
+X-SOCIALPROFILE;TYPE=linkedin:https://www.linkedin.com/in/sydney-lincoln-44b53a2b6/
+X-SOCIALPROFILE;TYPE=github:https://github.com/xoxobeau06
+X-SOCIALPROFILE;TYPE=instagram:https://www.instagram.com/syd_lincoln/?hl=en
+ADR;TYPE=WORK:;;13919 S. Cheney Spokane Rd.;Cheney;;USA
+NOTE:VCD Student with a focus on visual system design.
+END:VCARD
