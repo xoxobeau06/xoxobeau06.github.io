@@ -1,0 +1,219 @@
+/* ==========================================================
+   DESIGN TOKENS — Sydney's system
+   cream field · navy ink · poppy accent (rare) ·
+   pink / green / sunlight tints · slate utility
+   ========================================================== */
+:root {
+  --cream:    #FFF8EC;
+  --navy:     #27374A;
+  --poppy:    #A30B37;
+  --pink:     #F4AFB4;
+  --green:    #ABE188;
+  --sunlight: #FFEE88;
+  --slate:    #658E9C;
+
+  --font-body:   'Quicksand', system-ui, sans-serif;
+  --font-accent: 'Sofia', cursive;
+
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4.5rem;
+  --radius: 18px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--navy);
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.65;
+}
+
+a { color: var(--poppy); text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:focus-visible {
+  outline: 2px solid var(--poppy);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.wrap { max-width: 740px; margin: 0 auto; padding: 0 24px; }
+
+/* ==========================================================
+   HERO — the flower field
+   Soft sunlight sky fading into cream, hand-coded SVG
+   wildflowers swaying along the bottom edge.
+   ========================================================== */
+.hero {
+  position: relative;
+  background: linear-gradient(180deg, #FFFBE9 0%, var(--cream) 78%);
+  padding: 96px 0 0;
+  overflow: hidden;
+}
+
+.hero-inner { padding-bottom: 64px; }
+
+.greeting {
+  font-family: var(--font-accent);
+  font-size: 2.4rem;
+  color: var(--poppy);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: clamp(2.4rem, 7vw, 3.8rem);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  max-width: 16ch;
+  margin-bottom: 22px;
+}
+
+.hero p.intro {
+  max-width: 48ch;
+  color: var(--navy);
+  margin-bottom: 30px;
+}
+
+.hero-links { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn {
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 15px;
+  background: #fff;
+  border: 1.5px solid var(--navy);
+  color: var(--navy);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.btn:hover { text-decoration: none; transform: translateY(-2px); background: var(--sunlight); }
+.btn.primary { background: var(--navy); color: var(--cream); }
+.btn.primary:hover { background: var(--poppy); border-color: var(--poppy); }
+
+/* ---------- the field itself ---------- */
+.field {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: -2px; /* avoid hairline gap */
+}
+
+.flower, .blade {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  /* motion handled by GSAP — see script at the bottom */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* ==========================================================
+   SECTIONS
+   ========================================================== */
+section { padding: var(--space-lg) 0 var(--space-md); }
+
+.section-label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin-bottom: 6px;
+}
+
+h2 {
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-bottom: var(--space-md);
+}
+h2 .accent {
+  font-family: var(--font-accent);
+  font-weight: 400;
+  font-size: 2.1rem;
+  color: var(--poppy);
+}
+
+/* ---------- project cards ---------- */
+.project {
+  display: block;
+  color: inherit;
+  background: #fff;
+  border: 1.5px solid rgba(101, 142, 156, 0.35);
+  border-radius: var(--radius);
+  padding: 24px 26px;
+  margin-bottom: 16px;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.project:hover {
+  text-decoration: none;
+  transform: translateY(-3px);
+  border-color: var(--navy);
+  box-shadow: 0 8px 24px rgba(39, 55, 74, 0.08);
+}
+.project h3 { font-size: 1.15rem; font-weight: 700; }
+.project .meta { color: var(--slate); font-size: 0.9rem; margin-bottom: 8px; }
+.project p.desc { font-size: 1rem; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
+.tag {
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 999px;
+  color: var(--navy);
+}
+.tag.pink     { background: var(--pink); }
+.tag.green    { background: var(--green); }
+.tag.sunlight { background: var(--sunlight); }
+
+/* ---------- sprouting list ---------- */
+.sprouts { list-style: none; }
+.sprouts li {
+  position: relative;
+  padding: 10px 0 10px 34px;
+  border-bottom: 1px dashed rgba(101, 142, 156, 0.35);
+}
+.sprouts li:last-child { border-bottom: none; }
+.sprouts li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 14px;
+  width: 16px;
+  height: 16px;
+  background: no-repeat center / contain
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M8 15 V7" stroke="%23658E9C" stroke-width="1.6" stroke-linecap="round" fill="none"/><path d="M8 9 C8 6, 5 5, 3 5 C3 8, 6 9, 8 9 Z" fill="%23ABE188"/><path d="M8 7 C8 4, 11 3, 13 3 C13 6, 10 7, 8 7 Z" fill="%23ABE188"/></svg>');
+}
+
+/* ==========================================================
+   FOOTER
+   ========================================================== */
+footer {
+  margin-top: var(--space-md);
+  padding: var(--space-md) 0 var(--space-lg);
+  border-top: 1.5px solid rgba(101, 142, 156, 0.3);
+  text-align: center;
+}
+footer .sig {
+  font-family: var(--font-accent);
+  font-size: 1.7rem;
+  color: var(--poppy);
+  margin-bottom: 8px;
+}
+footer .foot-links { margin-bottom: 12px; }
+footer .foot-links a { margin: 0 10px; font-weight: 600; color: var(--navy); }
+footer .fine { color: var(--slate); font-size: 0.85rem; }
+
+@media (max-width: 540px) {
+  .hero { padding-top: 64px; }
+  section { padding: var(--space-md) 0; }
+  .project { padding: 20px; }
+}
